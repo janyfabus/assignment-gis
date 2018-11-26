@@ -20,8 +20,8 @@ Build a map-based application, which lets the user see geo-based data on a map a
 
 Fill in (either in English, or in Slovak):
 
-**Application description**: `<fill in>`
+**Application description**: `Webová aplikácia zobrazuje reštaurácie a bary v Trenčíne a jeho širšom okolí.`
 
-**Data source**: `<fill in>`
+**Data source**: `[Open Street Maps](https://www.openstreetmap.org/)`
 
-**Technologies used**: `<fill in>`
+**Technologies used**: `JavaScript - mapbox.js, Python - framework CherryPy, PostGIS `
