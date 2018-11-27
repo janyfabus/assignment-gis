@@ -45,9 +45,8 @@ class AllDataWebservice(object):
 class PubsWebService(object):
     exposed = True
     def GET(self):
-        #  vsetky puby
         cur.execute(
-            "SELECT row_to_json(fc) FROM ( SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features FROM (SELECT 'Feature' As type , ST_AsGeoJSON(ST_Transform(way, 4326))::json As geometry, row_to_json((osm_id,name,"'"addr:housename"'","'"addr:housenumber"'",amenity)) As properties FROM planet_osm_point where amenity like 'pub'   ) As f )  As fc; "
+            "SELECT row_to_json(fc) FROM ( SELECT 'FeatureCollection' AS type, array_to_json(array_agg(f)) AS features FROM (SELECT 'Feature' AS type, ST_AsGeoJSON(ST_Transform(way, 4326))::json AS geometry, row_to_json((osm_id, name, "'"addr:housename"'","'"addr:housenumber"'", amenity)) As properties FROM planet_osm_point WHERE amenity LIKE 'pub' AND ST_Distance_Sphere(ST_Transform(way, 4326), ST_MakePoint(18.0339, 48.8944)) <= 10000) AS f) AS fc;"
         )
         first = True
         for zaznam in cur:
@@ -62,9 +61,8 @@ class PubsWebService(object):
 class RestaurantWebService(object):
     exposed = True
     def GET(self):
-        #  vsetky restauracie
         cur.execute(
-            "SELECT row_to_json(fc) FROM ( SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features FROM (SELECT 'Feature' As type , ST_AsGeoJSON(ST_Transform(way, 4326))::json As geometry, row_to_json((osm_id,name,"'"addr:housename"'","'"addr:housenumber"'",amenity)) As properties FROM planet_osm_point where amenity like 'restaurant'  ) As f )  As fc; "
+            "SELECT row_to_json(fc) FROM ( SELECT 'FeatureCollection' AS type, array_to_json(array_agg(f)) AS features FROM (SELECT 'Feature' AS type, ST_AsGeoJSON(ST_Transform(way, 4326))::json AS geometry, row_to_json((osm_id, name,"'"addr:housename"'","'"addr:housenumber"'", amenity)) As properties FROM planet_osm_point WHERE amenity LIKE 'restaurant' AND ST_Distance_Sphere(ST_Transform(way, 4326), ST_MakePoint(18.0339, 48.8944)) <= 10000) AS f) AS fc;"
         )
         first = True
         for zaznam in cur:
