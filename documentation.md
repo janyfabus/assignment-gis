@@ -1,3 +1,5 @@
+JANKA FABUŠOVÁ
+
 # Úvod
 Webová aplikácia zobrazuje reštaurácie a bary v Trenčíne a jeho širšom okolí.
 Používateľovi sú umožnené nasledujúce scenáre:
