@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8 />
+		<title>Bary a restauracie Trencin a okolie</title>
+		<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+		<link rel="stylesheet" href="/static/css/style.css">
+		<script src='https://api.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
+		<link href='https://api.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
+		<script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+		<link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+	</head>
+	<body>
+		<div id='map'></div>
+		<div class='sidebar'>
+			<div class='heading'>
+    			<h1>BARY a RESTAURACIE:</h1>
+			</div>
+			<div class='filter-menu'>
+				<div class="search">
+					<input id="search_name" type="text" name="search_name" placeholder="zadaj nazov baru alebo restauracie">
+					<a href='#' id='geolocate' class='button' onclick="filterByName()">Filtruj</a>
+					<!-- <a href='#' id='geolocate' class='button'onclick="findMyLocation()">Find me</a> -->
+					<div class="check">
+						<button class="button long" onclick="getDistance()"> ZOBRAZ 10 NAJBLIZSICH </button>
+						<button class="button long" onclick="getParking()"> PARKOVACIE MIESTA </button>
+						<button class="button long" onclick="getPubs()"> ZOBRAZ BARY </button>
+						<button class="button long" onclick="getRestaurant()"> ZOBRAZ RESTAURACIE </button>
+					</div>	
+				</div>
+			</div>
+			<div id='listings' class='listings'></div>
+  		</div>
+		
+		<script src="/static/app.js">
+   		</script>
+	</body>
+</html>
