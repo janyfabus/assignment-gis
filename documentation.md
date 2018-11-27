@@ -2,8 +2,8 @@
 Webová aplikácia zobrazuje reštaurácie a bary v Trenčíne a jeho širšom okolí.
 Používateľovi sú umožnené nasledujúce scenáre:
   - vykreslenie barov a reštaurácií na mape 
-  - zobrazenie reštaurácii
-  - zobrazenie barov
+  - zobrazenie reštaurácii v oblasti 10 km
+  - zobrazenie barov v oblasti 10 km
   - zobrazenie 1O najbližsích barov/reštaurácií vzhľadom na jeho polohu
   - vykreslenie parkovísk v jeho okolí
   - filtrovanie barov/reštaurácií podľa názvu
@@ -37,10 +37,10 @@ Nájsť všetky bary a reštaurácie:
 Nájsť všetky bary a reštaurácie podľa názvu:
 `GET /alldata/:name`
 
-Nájsť všetky bary:
+Nájsť všetky bary v oblasti 10 km:
 `GET /pubs `
 
-Nájsť všetky reštaurácie:
+Nájsť všetky reštaurácie v oblasti 10 km:
 `GET /restaurant `
 
 Nájsť parkovacie miesta:
