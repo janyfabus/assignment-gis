@@ -1,18 +1,11 @@
-*This is a documentation for a fictional project, just to show you what I expect. Notice a few key properties:*
-- *no cover page, really*
-- *no copy&pasted assignment text*
-- *no code samples*
-- *concise, to the point, gets me a quick overview of what was done and how*
-- *I don't really care about the document length*
-- *I used links where appropriate*
-
 # Úvod
 Webová aplikácia zobrazuje reštaurácie a bary v Trenčíne a jeho širšom okolí.
 Používateľovi sú umožnené nasledujúce scenáre:
+  - vykreslenie barov a reštaurácií na mape 
   - zobrazenie reštaurácii
   - zobrazenie barov
   - zobrazenie 1O najbližsích barov/reštaurácií vzhľadom na jeho polohu
-  - vykreslenie najbližších parkovísk
+  - vykreslenie parkovísk v jeho okolí
   - filtrovanie barov/reštaurácií podľa názvu
   - zobrazenie detailu na klik
 
@@ -36,27 +29,88 @@ Dáta sú z Open Street Maps. Stiahnutý je Trenčín a jeho širšie okolie. Ti
 
 ## Api
 
+Backend poskytuje jednoduché REST API, teda vystavené webové služby, ktoré sú volané frontendom. Poskytované služby sú nasledovné:
 
+Nájsť všetky bary a reštaurácie:
+`GET /alldata `
+
+Nájsť všetky bary a reštaurácie podľa názvu:
+`GET /alldata/:name`
+
+Nájsť všetky bary:
+`GET /pubs `
+
+Nájsť všetky reštaurácie:
+`GET /restaurant `
+
+Nájsť parkovacie miesta:
+`GET /parking `
+
+Nájsť najbližšie bary a reštaurácie:
+`GET /distance `
 
 ### Response
 
-API vracia gejson, ktorý obsahuje "geometry" a "properties" pre každú nájdenú položku:
+API vracia gejson, ktorý obsahuje "geometry" a "properties" pre každý najdený bar a reštauráciu:
 ```
 {
-      "type": "Feature", 
-      "geometry": {
-        "type": "Point", 
-        "coordinates": [
-          18.0376516, 48.896410799718
-        ]
-      }, 
-      "properties": {
-        "f1": 2289661634, 
-        "f2": "Na lodenici", 
-        "f3": null, 
-        "f4": null, 
-        "f5": "pub"
-      }
-  },
+	"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [
+			17.7349104,
+			48.7841772997459
+		]
+	},
+	"properties": {
+		"f1": 521365994,
+		"f2": "Krčma u Čierneho Adama",
+		"f3": null,
+		"f4": null,
+		"f5": "pub"
+	}
+},
+```
+
+Ukážka geojsonu vráteného pri hľadaní parkovísk:
+```
+{
+	"type": "Feature",
+	"geometry": {
+		"type": "Polygon",
+		"coordinates": [
+			[
+				[
+					18.0329777,
+					48.8927810997189
+				],
+				[
+					18.0329977,
+					48.8927605997189
+				],
+				[
+					18.033026,
+					48.8927316997189
+				],
+				[
+					18.0336858,
+					48.8930914997188
+				],
+				[
+					18.0342383,
+					48.8933206997188
+				],
+				[
+					18.0343027,
+					48.8932642997188
+				],
+				[
+					18.0349089,
+					48.8935569997187
+				]
+			]
+		]
+	}
+}
 ```
 
