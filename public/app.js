@@ -3,7 +3,9 @@ var user_long;
 var user_lat;
 var locations;
 var map = L.mapbox.map('map', 'mapbox.streets')
-    .setView([48.891132, 18.042297], 12);
+    .setView([48.891132, 18.042297], 12)
+
+L.mapbox.styleLayer('mapbox://styles/jankhulienka/cjozyz0fc08gb2srxm2z3jjfy').addTo(map);
 
 // fake locacion
 function findMyLocation() {
