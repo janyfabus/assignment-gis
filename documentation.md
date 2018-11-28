@@ -19,7 +19,9 @@ Webová aplikácia je zložená z dvoch častí. [Frontend](#frontend), ktorý v
 
 # Frontend
 
-Frontend je staticka HTML stránka, ktorej kód sa nachádza v (`index.html`). Stránka obsahuje mapu a bočný panel. Mapa komunikuje zo serverom prostredníctvom [mapbox.js](https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js). Všetok potrebný kód sa nachádza v `public/app.js`. Vykonáva sa v ňom komunikácia s backendom, a spracovanie prijatých dát, ktoré prijíma z backendu vo forme JSONu resp geoJSONu. Prijaté dáta zobrazí do mapy a bočného panelu. Tento `geoJSON` sa trocha upravuje, pretože v ňom nie sú informácie o markeroch a tiež poloha používateľa.
+Frontend je staticka HTML stránka, ktorej kód sa nachádza v (`index.html`). Stránka obsahuje mapu a bočný panel. Mapa komunikuje zo serverom prostredníctvom [mapbox.js](https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js). Všetok potrebný kód sa nachádza v `public/app.js`. Vykonáva sa v ňom komunikácia s backendom, a spracovanie prijatých dát, ktoré prijíma z backendu vo forme JSONu resp geoJSONu. Prijaté dáta zobrazí do mapy a bočného panelu. Tento `geoJSON` sa trocha upravuje, pretože v ňom nie sú informácie o markeroch a tiež poloha používateľa. Sú pridané markery na rozlíšenie barov, reštaurácii a mojej polohy.
+Taktiež bol do mapy pridaný custom-style cez mapbox:
+`L.mapbox.styleLayer('mapbox://styles/jankhulienka/cjozyz0fc08gb2srxm2z3jjfy').addTo(map);`
 
 # Backend
 
@@ -28,6 +30,8 @@ Backend je napísaný v Pythone pomocou frameworku [CherryPy](#http://cherrypy.o
 ## Dáta
 
 Dáta sú z Open Street Maps. Stiahnutý je Trenčín a jeho širšie okolie. Tieto dáta boli pomocou osm2pgsql naimportované do databázy. Za účelom zrýchlenia dotazov je vytvorený index na stĺpci amenity, keďže sú z databázy vyberané iba riadky, ktorých amenity je buď "restaurant", alebo "pub". Ďalšie indexy sú vytvorené na stĺpci way v tabuľkách. Geojson je gengerovaný pomocou štandartnej funkcie st_asgeojson a všetky riadky sú spojené priamo v databáze do jedného geojsonu.
+
+![Screenshot](indexy.png)
 
 ## Api
 
@@ -116,3 +120,43 @@ Ukážka geojsonu vráteného pri hľadaní parkovísk:
 }
 ```
 
+## Query
+
+Zobrazenie 10 najbližších barov/reštaurácií podľa polohy používateľa:
+
+![Screenshot](query1.png)
+
+Vykreslenie parkovísk v mojom okolí:
+
+![Screenshot](query2.png)
+
+Filtrovanie barov/reštaurácií podľa názvu:
+
+![Screenshot](query3.png)
+
+Zobrazenie barov v oblasti 10 km:
+
+![Screenshot](query4.png)
+
+
+## Screenshoty z aplikácie
+
+Zobrazenie barov/reštaurácii na mape:
+
+![Screenshot](screenshot.png)
+
+Zobrazenie 10 najbližších barov/reštaurácii podľa polohy používateľa:
+
+![Screenshot](result1.png)
+
+Vykreslenie parkovísk v mojom okolí:
+
+![Screenshot](result2.png)
+
+Filtrovanie barov/reštaurácii podľa názvu:
+
+![Screenshot](result3.png)
+
+Zobrazenie barov v oblasti 10 km:
+
+![Screenshot](result4.png)
